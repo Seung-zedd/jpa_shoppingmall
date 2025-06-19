@@ -1,0 +1,6 @@
+
+spring:
+  profiles:
+    group:
+      dev: profile1, common
+      prod: profile2, common
