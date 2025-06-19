@@ -16,4 +16,4 @@ spring:
     hibernate:
       ddl-auto: none # 운영 서버는 none으로 한다.
       naming:
-        physical-strategy: com.mysite.sbb.configuration.CamelCaseToSnakeAndUpperCaseStrategy
+        physical-strategy: com.mysite.jpa_shoppingmall.configuration.CamelCaseToSnakeAndUpperCaseStrategy
