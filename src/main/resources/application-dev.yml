@@ -16,4 +16,5 @@ spring:
   # JPA
   jpa:
     hibernate:
-      ddl-auto: update
+      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: create-drop
