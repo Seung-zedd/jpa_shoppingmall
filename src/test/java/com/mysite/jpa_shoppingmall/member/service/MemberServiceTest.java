@@ -38,17 +38,29 @@ class MemberServiceTest {
     @DisplayName("회원강비 테스트")
     void saveMemberTest() {
         // given
-        Member member = createMember();
+        // 1. 테스트 메서드 안에서 원본 DTO를 직접 생성합니다.
+        MemberFormDto memberFormDto = new MemberFormDto();
+        memberFormDto.setEmail("test@email.com");
+        memberFormDto.setUsername("홍길동");
+        memberFormDto.setAddress("서울시 마포구 합정동");
+        memberFormDto.setPassword("2345"); // ✨ 우리가 검증에 사용할 '원본 평문'
+
+        // 2. 이 DTO를 사용하여 Member 엔티티를 생성합니다. (이 안에서 암호화가 일어남)
+        Member member = Member.createMember(memberFormDto, passwordEncoder);
 
         // when
         Member savedMember = memberService.saveMember(member);
 
         // then
+        // 3. 다른 필드들은 직접 비교합니다.
         assertThat(savedMember.getEmail()).isEqualTo(member.getEmail());
         assertThat(savedMember.getUsername()).isEqualTo(member.getUsername());
         assertThat(savedMember.getAddress()).isEqualTo(member.getAddress());
-        assertThat(savedMember.getPassword()).isEqualTo(member.getPassword());
         assertThat(savedMember.getRole()).isEqualTo(member.getRole());
 
+        // 4. ✅ 비밀번호는 "원본 평문"과 "저장된 암호화된 값"을 비교합니다.
+        assertThat(passwordEncoder.matches(memberFormDto.getPassword(), savedMember.getPassword())).isTrue();
     }
+
+
 }

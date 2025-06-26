@@ -42,10 +42,13 @@ public class Member {
             return null;
         }
 
+        String encodedPassword = passwordEncoder.encode(memberFormDto.getPassword());
+
         return Member.builder()
                 .username(memberFormDto.getUsername())
                 .email(memberFormDto.getEmail())
-                .password(memberFormDto.getPassword())
+                // ✅ 올바른 방법: DTO의 비밀번호를 인코더로 암호화하여 저장
+                .password(encodedPassword)
                 .address(memberFormDto.getAddress())
                 .role(Role.USER)
                 .build();
