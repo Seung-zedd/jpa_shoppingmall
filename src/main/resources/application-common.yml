@@ -8,6 +8,11 @@ spring:
   h2:
     console:
       enabled: false
+  # 타임리프 설정
+  thymeleaf:
+    servlet:
+      produce-partial-output-while-processing: false
+
   # JPA
   jpa:
     properties:
