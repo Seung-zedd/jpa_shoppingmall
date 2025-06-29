@@ -17,7 +17,7 @@ public class Member {
     private Long id;
 
     @Column(unique = true)
-    private String name; // 사용자 로그인 아이디
+    private String username; // 사용자 로그인 아이디
 
     @Column(unique = true)
     private String email;
@@ -28,9 +28,9 @@ public class Member {
     private Role role;
 
     @Builder
-    private Member(Long id, String name, String email, String password, String address, Role role) {
+    private Member(Long id, String username, String email, String password, String address, Role role) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.address = address;
@@ -45,7 +45,7 @@ public class Member {
         String encodedPassword = passwordEncoder.encode(memberFormDto.getPassword());
 
         return Member.builder()
-                .name(memberFormDto.getName())
+                .username(memberFormDto.getUsername())
                 .email(memberFormDto.getEmail())
                 // ✅ 올바른 방법: DTO의 비밀번호를 인코더로 암호화하여 저장
                 .password(encodedPassword)
