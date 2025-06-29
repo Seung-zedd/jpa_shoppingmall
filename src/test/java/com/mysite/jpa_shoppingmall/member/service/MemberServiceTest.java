@@ -31,7 +31,7 @@ class MemberServiceTest {
         memberFormDto.setEmail("test@email.com");
         memberFormDto.setName("홍길동");
         memberFormDto.setAddress("서울시 마포구 합정동");
-        memberFormDto.setPassword("2345");
+        memberFormDto.setPassword1("2345");
         return Member.createMember(memberFormDto, passwordEncoder);
     }
 
@@ -44,7 +44,7 @@ class MemberServiceTest {
         memberFormDto.setEmail("test@email.com");
         memberFormDto.setName("홍길동");
         memberFormDto.setAddress("서울시 마포구 합정동");
-        memberFormDto.setPassword("2345"); // ✨ 우리가 검증에 사용할 '원본 평문'
+        memberFormDto.setPassword1("2345"); // ✨ 우리가 검증에 사용할 '원본 평문'
 
         // 2. 이 DTO를 사용하여 Member 엔티티를 생성합니다. (이 안에서 암호화가 일어남)
         Member member = Member.createMember(memberFormDto, passwordEncoder);
@@ -60,7 +60,7 @@ class MemberServiceTest {
         assertThat(savedMember.getRole()).isEqualTo(member.getRole());
 
         // 4. ✅ 비밀번호는 "원본 평문"과 "저장된 암호화된 값"을 비교합니다.
-        assertThat(passwordEncoder.matches(memberFormDto.getPassword(), savedMember.getPassword())).isTrue();
+        assertThat(passwordEncoder.matches(memberFormDto.getPassword1(), savedMember.getPassword())).isTrue();
     }
 
     @Test
