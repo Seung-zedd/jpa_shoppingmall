@@ -6,11 +6,13 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@ToString
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,7 +44,7 @@ public class Member {
             return null;
         }
 
-        String encodedPassword = passwordEncoder.encode(memberFormDto.getPassword());
+        String encodedPassword = passwordEncoder.encode(memberFormDto.getPassword1());
 
         return Member.builder()
                 .name(memberFormDto.getName())
