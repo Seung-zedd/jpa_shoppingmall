@@ -30,7 +30,7 @@ public class SecurityConfig {
                 )
                 // 3. 로그아웃 설정 (최신 스타일)
                 .logout(logout -> logout
-                        .logoutUrl("/user/logout")
+                        .logoutUrl("/members/logout") // ✅ .logoutUrl() 메서드로 간단하게 교체
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                 )
