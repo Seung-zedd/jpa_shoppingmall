@@ -24,8 +24,9 @@ public class SecurityConfig {
                 .requestMatchers("/**").permitAll()
         )
                 // 2. 로그인 설정
-                .formLogin(formLogin -> formLogin.loginPage("/user/login")
+                .formLogin(formLogin -> formLogin.loginPage("/members/login")
                         .defaultSuccessUrl("/")
+                        .usernameParameter("email")
                 )
                 // 3. 로그아웃 설정 (최신 스타일)
                 .logout(logout -> logout
