@@ -24,12 +24,31 @@ public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Handles GET requests to display the member registration form.
+     *
+     * Adds an empty MemberFormDto to the model for form binding and returns the view name for the registration form.
+     *
+     * @return the view name for the member registration form
+     */
     @GetMapping("/new")
     public String memberForm(Model model) {
         model.addAttribute("memberFormDto", new MemberFormDto());
         return "/member/memberForm";
     }
 
+    /**
+     * Processes member registration form submissions, validates input, and creates a new member account.
+     *
+     * If validation errors are present, returns the registration form view with errors displayed.
+     * On successful registration, redirects to the home page.
+     * If an `IllegalStateException` occurs during member creation or saving, adds the error message as a flash attribute and returns the registration form view.
+     *
+     * @param memberFormDto the submitted member registration form data
+     * @param bindingResult holds validation results for the form data
+     * @param redirectAttributes used to pass flash attributes on redirect
+     * @return the view name to render or a redirect instruction
+     */
     @PostMapping("/new")
     public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         // 에러 검증
