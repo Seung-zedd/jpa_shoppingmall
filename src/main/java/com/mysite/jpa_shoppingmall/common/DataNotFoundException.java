@@ -10,6 +10,11 @@ public class DataNotFoundException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructs a new DataNotFoundException with the specified detail message.
+     *
+     * @param message the detail message explaining the reason for the exception
+     */
     public DataNotFoundException(String message) {
         super(message);
     }
