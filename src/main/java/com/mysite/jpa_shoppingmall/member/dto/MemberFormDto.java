@@ -13,10 +13,7 @@ public class MemberFormDto {
     private String name;
 
     @NotBlank(message = "이메일은 필수 입력 값입니다.")
-    @Pattern(
-            regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.com$",
-            message = ".com으로 끝나는 이메일만 허용됩니다."
-    )
+    @Email(message = "올바른 이메일 형식이 아닙니다.")
     private String email;
 
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
