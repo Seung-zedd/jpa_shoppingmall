@@ -30,6 +30,11 @@ public class MemberFormDto {
     @NotBlank(message = "비밀번호 확인은 필수 입력 값입니다.")
     private String password2;
 
+    @AssertTrue(message = "비밀번호가 일치하지 않습니다.")
+    public boolean isPasswordConfirmed() {
+        return password1 != null && password1.equals(password2);
+    }
+
     @NotBlank(message = "주소는 필수 입력 값입니다.")
     private String address;
 
