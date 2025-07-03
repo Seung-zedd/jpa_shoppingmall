@@ -16,7 +16,7 @@
 <th:block layout:fragment="script">
 
     <script th:inline="javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var errorMessage = [[${errorMessage}]];
 
             if (errorMessage != null) {
@@ -33,8 +33,8 @@
     <!--    th:action과 post를 함께 작성하면 스프링 시큐리티가 자동으로 form 내부에 CSRF 토큰을 담은 <input type="hidden"> 태그를 몰래 삽입해줌-->
     <form th:action="@{/members/new}" method="post" th:object="${memberFormDto}">
         <div class="form-group">
-            <label th:for="name">사용자 ID</label>
-            <input type="text" th:field="*{name}" class="form-control" placeholder="3자 이상 25자 이하를 입력해 주세요.">
+            <label for="name">사용자 ID</label>
+            <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="3자 이상 25자 이하를 입력해 주세요.">
             <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
         </div>
         <div class="form-group">
