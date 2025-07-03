@@ -21,9 +21,13 @@ public class MemberService {
      * @throws IllegalStateException if a member with the same email already exists
      */
     public Member saveMember(Member member) {
+        if (member == null) {
+            throw new IllegalArgumentException("멤버를 찾을 수 없습니다.");
+        }
         validateDuplicateMember(member);
         return memberRepository.save(member);
     }
+
 
     /**
      * Checks if a member with the same email already exists and throws an exception if a duplicate is found.
