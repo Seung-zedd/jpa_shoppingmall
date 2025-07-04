@@ -1,0 +1,28 @@
+html {
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+}
+body {
+    min-height: 100%;
+}
+.footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+.content{
+    margin-bottom:100px;
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.form-control::placeholder {
+    font-weight: bold;
+    opacity: 0.3; /* 투명도를 1로 설정하여 완전히 불투명하게 만듭니다 */
+}
