@@ -24,12 +24,30 @@ public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * Handles GET requests to display the member registration form.
+     *
+     * Adds an empty MemberFormDto to the model for form binding and returns the view name for the registration page.
+     *
+     * @param model the model to which the form DTO is added
+     * @return the view name for the member registration form
+     */
     @GetMapping("/new")
     public String memberForm(Model model) {
         model.addAttribute("memberFormDto", new MemberFormDto());
         return "member/memberForm";
     }
 
+    /**
+     * Processes member registration form submissions, creating a new member if validation passes.
+     *
+     * If the submitted form contains validation errors, redisplays the registration form. On successful member creation, redirects to the home page. If an error occurs during member creation or saving, adds an error message and redisplays the registration form.
+     *
+     * @param memberFormDto the submitted member registration data
+     * @param bindingResult the result of form validation
+     * @param redirectAttributes attributes for flash messages during redirection
+     * @return the view name to render or a redirect instruction
+     */
     @PostMapping("/new")
     public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         // 에러 검증
@@ -51,6 +69,13 @@ public class MemberController {
 
     }
 
+    /**
+     * Handles GET requests to display the member login form.
+     *
+     * Adds a login error message to the model and returns the view for the member login page.
+     *
+     * @return the name of the login form view
+     */
     @GetMapping("/login")
     public String loginMember(Model model) {
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");

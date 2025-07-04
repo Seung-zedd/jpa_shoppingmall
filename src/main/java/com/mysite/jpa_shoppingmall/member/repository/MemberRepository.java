@@ -5,5 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Member findByEmail(String email);
+    /**
+ * Retrieves a Member entity by its email address.
+ *
+ * @param email the email address to search for
+ * @return the Member with the specified email, or null if not found
+ */
+Member findByEmail(String email);
 }
