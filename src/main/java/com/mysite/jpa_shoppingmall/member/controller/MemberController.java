@@ -52,8 +52,11 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public String loginMember(Model model) {
-        model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
+    public String loginMember(Model model,
+                              @RequestParam(value = "error", required = false) String error) {
+        if (error != null) {
+            model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
+        }
         return "member/memberLoginForm";
     }
 
