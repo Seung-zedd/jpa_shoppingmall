@@ -21,8 +21,10 @@ public class SecurityConfig {
         http
                 // 1. 인증되지 않은 모든 페이지의 요청을 허락 (최신 스타일)
                 .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/**").permitAll()
-        )
+                        //! 프로덕트 환경에서는 보안상 위험할 수 있기 때문에 필요한 엔드포인트만 허용하도록 한다.
+                        .requestMatchers("/", "/members/new", "/members/login", "/css/**", "/js/**", "/images/**").permitAll()
+                        .anyRequest().authenticated()
+                )
                 // 2. 로그인 설정
                 .formLogin(formLogin -> formLogin.loginPage("/members/login")
                         .defaultSuccessUrl("/")
@@ -37,7 +39,8 @@ public class SecurityConfig {
                 // 4. 💡 CSRF 설정을 명시적으로 활성화하여 타이밍 문제를 해결
                 .csrf(withDefaults());
 
-        return http.build();    }
+        return http.build();
+    }
 
     @Bean
     PasswordEncoder passwordEncoder() {

@@ -30,7 +30,7 @@
 
 <div layout:fragment="content">
 
-    <!--    th:action과 post를 함께 작성하면 스프링 시큐리티가 자동으로 form 내부에 CSRF 토큰을 담은 <input type="hidden"> 태그를 몰래 삽입해줌-->
+    <!--    Spring Security는 CSRF 보호를 활성화하지만, HTML form에 토큰을 자동 삽입하지 않으므로 아래의 hidden input을 수동으로 추가해야 합니다.-->
     <form th:action="@{/members/new}" method="post" th:object="${memberFormDto}">
         <div class="form-group">
             <label th:for="name">이름</label>

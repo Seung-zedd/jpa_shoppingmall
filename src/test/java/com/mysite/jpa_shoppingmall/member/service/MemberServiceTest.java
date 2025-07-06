@@ -36,7 +36,7 @@ class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("회원강비 테스트")
+    @DisplayName("회원가입 테스트")
     void saveMemberTest() {
         // given
         // 1. 테스트 메서드 안에서 원본 DTO를 직접 생성합니다.

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Objects;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -40,9 +42,9 @@ public class Member {
     }
 
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
-        if (memberFormDto == null) {
-            return null;
-        }
+        // null 체크를 명시적으로 수행하고, null일 경우 명확한 예외 메시지와 함께 예외 발생
+        Objects.requireNonNull(memberFormDto, "memberFormDto cannot be null");
+        Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
 
         String encodedPassword = passwordEncoder.encode(memberFormDto.getPassword1());
 

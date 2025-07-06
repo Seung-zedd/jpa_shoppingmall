@@ -4,7 +4,8 @@ spring:
       on-profile: profile2
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/shop?serverTimezone=Asia/Seoul
+    # ✅ 'Asia/Seoul'을 '+09:00'으로 변경
+    url: jdbc:mysql://localhost:3306/shop?serverTimezone=%2B09:00
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:
