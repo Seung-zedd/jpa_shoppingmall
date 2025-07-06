@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/thymeleaf")
 public class ThymeleafExController {
 
+    /**
+     * Handles HTTP GET requests to "/ex07" and returns the view name for the Thymeleaf example page.
+     *
+     * @return the name of the Thymeleaf template to render
+     */
     @GetMapping("/ex07")
     public String thymeleafExample07() {
         return "thymeleafEx/thymeleafEx07";

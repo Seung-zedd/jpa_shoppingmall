@@ -16,7 +16,14 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
+    /**
+         * Configures the application's security filter chain, permitting all requests, setting up custom login and logout endpoints, and enabling CSRF protection.
+         *
+         * @param http the {@link HttpSecurity} to modify
+         * @return the configured {@link SecurityFilterChain}
+         * @throws Exception if an error occurs during configuration
+         */
+        @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 // 1. 인증되지 않은 모든 페이지의 요청을 허락 (최신 스타일)
@@ -42,11 +49,23 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Provides a {@link PasswordEncoder} bean that uses the BCrypt hashing algorithm for encoding passwords.
+     *
+     * @return a BCrypt-based password encoder
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Provides the {@link AuthenticationManager} bean by retrieving it from the given {@link AuthenticationConfiguration}.
+     *
+     * @param authenticationConfiguration the authentication configuration used to obtain the authentication manager
+     * @return the configured {@link AuthenticationManager}
+     * @throws Exception if the authentication manager cannot be obtained
+     */
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();

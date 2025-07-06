@@ -32,11 +32,17 @@ public class MemberService implements UserDetailsService {
                 .build();
     }
 
+
     public Member saveMember(Member member) {
+        if (member == null) {
+            throw new IllegalArgumentException("멤버를 찾을 수 없습니다.");
+        }
         validateDuplicateMember(member);
         return memberRepository.save(member);
     }
 
+
+   
     private void validateDuplicateMember(Member member) {
         Member findMember = memberRepository.findByEmail(member.getEmail());
         if (findMember != null) {
