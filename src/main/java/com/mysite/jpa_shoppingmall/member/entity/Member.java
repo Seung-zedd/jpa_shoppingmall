@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Objects;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -29,18 +31,6 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    /**
-     * Constructs a Member instance with the specified id, name, email, password, address, and role.
-     *
-     * This constructor is intended for use by the builder and within the class only.
-     *
-     * @param id the unique identifier of the member
-     * @param name the username for login
-     * @param email the member's unique email address
-     * @param password the member's encoded password
-     * @param address the member's address
-     * @param role the role assigned to the member
-     */
     @Builder
     private Member(Long id, String name, String email, String password, String address, Role role) {
         this.id = id;
@@ -51,17 +41,10 @@ public class Member {
         this.role = role;
     }
 
-    /**
-     * Creates a new Member entity from the provided MemberFormDto, encoding the password and assigning the default user role.
-     *
-     * @param memberFormDto the data transfer object containing member registration details; if null, returns null
-     * @param passwordEncoder the encoder used to securely hash the member's password
-     * @return a new Member instance with encoded password and user role, or null if the input DTO is null
-     */
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
-        if (memberFormDto == null) {
-            return null;
-        }
+        // ♻️null 체크를 명시적으로 수행하고, null일 경우 명확한 예외 메시지와 함께 예외 발생
+        Objects.requireNonNull(memberFormDto, "memberFormDto cannot be null");
+        Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
 
         String encodedPassword = passwordEncoder.encode(memberFormDto.getPassword1());
 
