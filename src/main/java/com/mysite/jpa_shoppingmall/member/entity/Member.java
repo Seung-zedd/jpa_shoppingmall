@@ -42,7 +42,7 @@ public class Member {
     }
 
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
-        // null 체크를 명시적으로 수행하고, null일 경우 명확한 예외 메시지와 함께 예외 발생
+        // ♻️null 체크를 명시적으로 수행하고, null일 경우 명확한 예외 메시지와 함께 예외 발생
         Objects.requireNonNull(memberFormDto, "memberFormDto cannot be null");
         Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
 
