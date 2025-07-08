@@ -7,7 +7,6 @@ build/
 
 ### Unnecessary Files ###
 *.log
-**/src/test
 
 ### STS ###
 .apt_generated
