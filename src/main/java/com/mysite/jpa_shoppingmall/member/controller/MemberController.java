@@ -47,7 +47,7 @@ public class MemberController {
             log.info("after creating member: {}", member.toString());
         } catch (IllegalStateException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "member/memberForm";
+            return "redirect:/members/new";
         }
 
         return "redirect:/";
