@@ -9,6 +9,9 @@
 5. 모든 리뷰가 통과가 되면 최종적으로 **develop에 merge PR request**를 한다.
 
 <br>
+
+## 🔧프로젝트 기술 스택
+- Spring Boot 3.x, Java 21, JPA, MySQL, Thymeleaf (will be replaced with Vue.js)
 <br>
 
 ## 🚀 나의 Git 워크플로우 (My Git Workflow)
