@@ -13,6 +13,13 @@
 
 ## 🚀 나의 Git 워크플로우 (My Git Workflow)
 이 프로젝트는 main 브랜치와 develop 브랜치를 중심으로,  '기능 기반 브랜치 전략(Feature Branch Strategy)'을 사용합니다.
+- 🚢main: **배포 가능**한 안정적인 버전의 코드만 존재하는 브랜치.
+
+- 🔧develop: 개발의 중심이 되는 브랜치. **모든 기능**은 이곳으로 합쳐져 **통합 테스트**를 거칩니다.
+
+- ✨feature/*: 하나의 기능을 개발하기 위한 브랜치. develop에서 시작하여 develop으로 합쳐집니다.
+
+<br>
 
 1. 기능 개발 시작 (Starting a New Feature): 
 새로운 기능 개발은 **항상 최신 상태의 develop 브랜치에서 시작**합니다.
@@ -74,3 +81,28 @@ git branch -d feature/새로운-기능
 git push origin --delete feature/새로운-기능
 (보통 GitHub에서 Merge 후 바로 브랜치를 삭제하는 버튼이 나타납니다.)
 ```
+
+<br>
+
+5. 릴리즈 및 배포 (Release & Deploy)
+develop 브랜치에 이번 버전에 포함될 모든 기능들이 통합되고, 충분한 테스트를 통해 안정성이 확보되었다고 판단되면 정식 버전을 배포합니다.
+
+```Bash
+# 1. 배포의 기준이 될 main 브랜치로 이동합니다.
+git checkout main
+
+# 2. main 브랜치를 최신 상태로 업데이트합니다.
+git pull origin main
+
+# 3. develop 브랜치의 모든 내용을 main 브랜치로 병합합니다.
+git merge develop
+
+# 4. main 브랜치에 병합된 내용을 원격 저장소에 푸시합니다.
+git push origin main
+
+# 5. 역사적인 기록을 위해 버전을 명시하는 태그(Tag)를 생성하고, 태그도 푸시합니다.
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin v1.0.0
+```
+
+이 과정을 통해 main 브랜치는 항상 안정적이고 배포 가능한 상태를 유지하게 됩니다.
