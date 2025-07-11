@@ -17,6 +17,7 @@ import java.util.Objects;
 @ToString
 public class Member {
     @Id
+    @Column(name = "member_id") // 직접 명명해줘야 id -> member_id로 나옴
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

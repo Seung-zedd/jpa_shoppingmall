@@ -21,10 +21,22 @@ public class SecurityConfig {
         http
                 // 1. 인증되지 않은 모든 페이지의 요청을 허락 (최신 스타일)
                 .authorizeHttpRequests(authorize -> authorize
-                        //! 프로덕트 환경에서는 보안상 위험할 수 있기 때문에 필요한 엔드포인트만 허용하도록 한다.
+                                //! 프로덕트 환경에서는 보안상 위험할 수 있기 때문에 필요한 엔드포인트만 허용하도록 한다.
 //                        .requestMatchers("/", "/members/new", "/members/login", "/css/**", "/js/**", "/images/**").permitAll()
-                                .requestMatchers("/**").permitAll()
-                        .anyRequest().authenticated()
+                                //* 이건 편의상 사용
+//                                .requestMatchers("/**").permitAll()
+
+                                //* static 디렉토리의 하위 파일은 인증을 무시
+                                // permitAll()을 통해 모든 사용자가 인증없이 해당 경로에 접근할 수 있도록 설정
+                                .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                                .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
+
+                                //* /admin으로 시작하는 경로는 해당 계정이 ADMIN Role일 경우에나 접근 가능
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                                //* 위에서 설정해준 경로를 제외한 나머지 경로들은 모두 인증을 요구하도록 설정
+                                .anyRequest()
+                                .authenticated()
                 )
                 // 2. 로그인 설정
                 .formLogin(formLogin -> formLogin.loginPage("/members/login")
