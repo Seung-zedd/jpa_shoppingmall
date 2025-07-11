@@ -1,2 +1,7 @@
 # 언어 설정
 language: 'ko'
+
+reviews:
+  # This tells CodeRabbit to also watch for PRs targeting the 'develop' branch
+  branches:
+    - "develop"
