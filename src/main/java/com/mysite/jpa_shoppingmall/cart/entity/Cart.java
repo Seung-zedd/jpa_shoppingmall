@@ -2,13 +2,12 @@ package com.mysite.jpa_shoppingmall.cart.entity;
 
 import com.mysite.jpa_shoppingmall.member.entity.Member;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter(AccessLevel.PRIVATE)
 public class Cart {
 
     @Id
@@ -18,5 +17,13 @@ public class Cart {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
+    @Setter(AccessLevel.PUBLIC)
     private Member member;
+
+    @Builder
+    private Cart(Long id, Member member) {
+        this.id = id;
+        this.member = member;
+    }
+
 }
