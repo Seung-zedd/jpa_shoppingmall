@@ -2,6 +2,7 @@ package com.mysite.jpa_shoppingmall.member.controller;
 
 import com.mysite.jpa_shoppingmall.member.dto.MemberFormDto;
 import com.mysite.jpa_shoppingmall.member.entity.Member;
+import com.mysite.jpa_shoppingmall.member.mapper.MemberMapper;
 import com.mysite.jpa_shoppingmall.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    private final MemberMapper memberMapper;
 
     //* 회원가입 폼 조회
     @GetMapping("/new")
@@ -42,7 +44,9 @@ public class MemberController {
 
         // 서비스 로직 실행
         try {
-            Member member = Member.createMember(memberFormDto, passwordEncoder);
+            //* 컨트롤러 계층의 흐름 제어 + 객체 생성 책임 -> 흐름 제어
+            Member member = memberMapper.toMemberEntity(memberFormDto, passwordEncoder);
+//            Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
             log.info("after creating member: {}", member.toString());
         } catch (IllegalStateException e) {

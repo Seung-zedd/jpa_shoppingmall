@@ -1,19 +1,13 @@
 package com.mysite.jpa_shoppingmall.member.entity;
 
 import com.mysite.jpa_shoppingmall.member.constant.Role;
-import com.mysite.jpa_shoppingmall.member.dto.MemberFormDto;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Objects;
+import lombok.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
+//* 1. JPA를 위해 기본 생성자는 필요하지만, 외부에서 함부로 쓰지 못하게 protected로 제한합니다.
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class Member {
     @Id
@@ -32,6 +26,7 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    //* 2. MapStruct가 객체를 안전하게 생성할 수 있도록 @Builder를 사용합니다.
     @Builder
     private Member(Long id, String name, String email, String password, String address, Role role) {
         this.id = id;
@@ -40,22 +35,5 @@ public class Member {
         this.password = password;
         this.address = address;
         this.role = role;
-    }
-
-    public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
-        // ♻️null 체크를 명시적으로 수행하고, null일 경우 명확한 예외 메시지와 함께 예외 발생
-        Objects.requireNonNull(memberFormDto, "memberFormDto cannot be null");
-        Objects.requireNonNull(passwordEncoder, "passwordEncoder cannot be null");
-
-        String encodedPassword = passwordEncoder.encode(memberFormDto.getPassword1());
-
-        return Member.builder()
-                .name(memberFormDto.getName())
-                .email(memberFormDto.getEmail())
-                // ✅ 올바른 방법: DTO의 비밀번호를 인코더로 암호화하여 저장
-                .password(encodedPassword)
-                .address(memberFormDto.getAddress())
-                .role(Role.USER)
-                .build();
     }
 }
