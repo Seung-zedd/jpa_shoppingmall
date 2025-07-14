@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Setter(AccessLevel.PRIVATE)
 //* 브릿지 엔티티 역할
 public class OrderItem {
     @Id
@@ -30,10 +29,14 @@ public class OrderItem {
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 
-    /*@Builder
-    private OrderItem(Long id, Order order, Item item) {
+    @Builder
+    private OrderItem(Long id, Order order, Item item, int orderPrice, int count, LocalDateTime regTime, LocalDateTime updateTime) {
         this.id = id;
         this.order = order;
         this.item = item;
-    }*/
+        this.orderPrice = orderPrice;
+        this.count = count;
+        this.regTime = regTime;
+        this.updateTime = updateTime;
+    }
 }

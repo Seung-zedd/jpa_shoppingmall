@@ -8,6 +8,8 @@ import lombok.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Setter(AccessLevel.PRIVATE)
+@AllArgsConstructor
+@Builder
 //* 브릿지 엔티티 역할
 public class CartItem {
 
@@ -25,12 +27,4 @@ public class CartItem {
     private Item item;
 
     private int count;
-
-    @Builder
-    private CartItem(Long id, Cart cart, Item item, int count) {
-        this.id = id;
-        this.cart = cart;
-        this.item = item;
-        this.count = count;
-    }
 }

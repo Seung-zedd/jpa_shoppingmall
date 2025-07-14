@@ -8,6 +8,8 @@ import lombok.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Setter(AccessLevel.PRIVATE)
+@AllArgsConstructor
+@Builder
 public class Cart {
 
     @Id
@@ -19,11 +21,4 @@ public class Cart {
     @JoinColumn(name = "member_id")
     @Setter(AccessLevel.PUBLIC)
     private Member member;
-
-    @Builder
-    private Cart(Long id, Member member) {
-        this.id = id;
-        this.member = member;
-    }
-
 }
