@@ -6,15 +6,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 //* 빌드 시 매핑 안된 필드를 로그로 찾기 위해 WARN으로 설정하는 것이 좋음
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.WARN)
 public interface MemberMapper {
 
-    // MemberMapper의 구현체를 Mappers.getMapper를 통해 얻을 수 있음
-    MemberMapper INSTANCE = Mappers.getMapper(MemberMapper.class);
+    //! INSTANCE로 직접 Mapper 구현체 인스턴스를 가져오면 build 패키지에서 duplicated class 문제가 발생
+//    MemberMapper INSTANCE = Mappers.getMapper(MemberMapper.class);
 
     //* 필드 이름이 같으면 자동으로 매핑해줌
     @Mappings({
