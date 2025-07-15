@@ -37,7 +37,4 @@ public class Order extends BaseEntity {
     @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @Builder.Default
     private List<OrderItem> orderItems = new ArrayList<>();
-
-    private LocalDateTime regTime;
-    private LocalDateTime updateTime;
 }

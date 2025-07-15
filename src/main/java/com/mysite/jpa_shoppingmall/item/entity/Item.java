@@ -5,7 +5,6 @@ import com.mysite.jpa_shoppingmall.item.constant.ItemSellStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -33,8 +32,6 @@ public class Item extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus; // 상품 판매 상태
-    private LocalDateTime regTime; // 등록 시간
-    private LocalDateTime updateTime; // 수정 시간
     /*
     실제로는 1개의 상품에 여러가지 옵션 및 옵션 상품의 가격, 재고, 배송 방법에 대한 정보까지 관리해야함
      */
