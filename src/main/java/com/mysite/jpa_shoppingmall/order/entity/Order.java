@@ -22,7 +22,7 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member; // 주문 엔티티 기준에서 다대일 단방향 매핑(∵주문 객체한테 책임 위임)
 
@@ -33,7 +33,7 @@ public class Order {
 
     //! 양방향 매핑은 연관 테이블과 많은 연관 관계를 매핑하기 때문에 필요할 때만 양방향 매핑을 추가할 것
     //! 고아 객체 제거 옵션은 반드시 참조하는 부모 엔티티가 하나일 때만 사용할 것
-    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @Builder.Default
     private List<OrderItem> orderItems = new ArrayList<>();
 
