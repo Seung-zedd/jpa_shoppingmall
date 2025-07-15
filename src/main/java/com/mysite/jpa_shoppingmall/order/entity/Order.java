@@ -1,5 +1,6 @@
 package com.mysite.jpa_shoppingmall.order.entity;
 
+import com.mysite.jpa_shoppingmall.config.audit.BaseEntity;
 import com.mysite.jpa_shoppingmall.member.entity.Member;
 import com.mysite.jpa_shoppingmall.order.constant.OrderStatus;
 import jakarta.persistence.*;
@@ -16,7 +17,7 @@ import java.util.List;
 // 클래스 레벨에 빌더를 선언함으로써 builder() 부분에서 함수 오버로딩을 통해 원하는 필드만 설정할 수 있음
 @AllArgsConstructor
 @Builder
-public class Order {
+public class Order extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")

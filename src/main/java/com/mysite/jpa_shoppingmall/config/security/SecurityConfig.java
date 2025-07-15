@@ -1,4 +1,4 @@
-package com.mysite.jpa_shoppingmall.configuration;
+package com.mysite.jpa_shoppingmall.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.mysite.jpa_shoppingmall.configuration;
+package com.mysite.jpa_shoppingmall.config.security;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
