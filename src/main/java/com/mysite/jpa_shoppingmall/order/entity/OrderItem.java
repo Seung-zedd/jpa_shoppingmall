@@ -1,5 +1,6 @@
 package com.mysite.jpa_shoppingmall.order.entity;
 
+import com.mysite.jpa_shoppingmall.config.audit.BaseEntity;
 import com.mysite.jpa_shoppingmall.item.entity.Item;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 //* 브릿지 엔티티 역할
-public class OrderItem {
+public class OrderItem extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_item_id")

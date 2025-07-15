@@ -1,5 +1,6 @@
 package com.mysite.jpa_shoppingmall.item.entity;
 
+import com.mysite.jpa_shoppingmall.config.audit.BaseEntity;
 import com.mysite.jpa_shoppingmall.item.constant.ItemSellStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @ToString // 디버깅 용도
 @AllArgsConstructor
 @Builder
-public class Item {
+public class Item extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) // DB가 변경되더라도 코드 수정 필요 x(but, dev와 prod DB가 다를 경우 예기치 못한 에러가 발생할 수 있음)
     private Long id; // 상품 코드

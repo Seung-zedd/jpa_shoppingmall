@@ -1,5 +1,6 @@
 package com.mysite.jpa_shoppingmall.member.entity;
 
+import com.mysite.jpa_shoppingmall.config.audit.BaseEntity;
 import com.mysite.jpa_shoppingmall.member.constant.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +12,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @Builder
-public class Member {
+public class Member extends BaseEntity {
     @Id
     @Column(name = "member_id") // 직접 명명해줘야 id -> member_id로 나옴
     @GeneratedValue(strategy = GenerationType.AUTO)

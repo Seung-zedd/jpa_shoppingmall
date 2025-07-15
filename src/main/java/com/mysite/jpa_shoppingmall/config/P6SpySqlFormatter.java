@@ -1,4 +1,4 @@
-package com.mysite.jpa_shoppingmall.configuration;
+package com.mysite.jpa_shoppingmall.config;
 
 import com.p6spy.engine.logging.Category;
 import com.p6spy.engine.spy.P6SpyOptions;

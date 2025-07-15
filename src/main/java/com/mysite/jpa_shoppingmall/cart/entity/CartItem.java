@@ -1,5 +1,6 @@
 package com.mysite.jpa_shoppingmall.cart.entity;
 
+import com.mysite.jpa_shoppingmall.config.audit.BaseEntity;
 import com.mysite.jpa_shoppingmall.item.entity.Item;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +12,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 //* 브릿지 엔티티 역할
-public class CartItem {
+//? "고객이 언제 담았고, 언제 수량을 바꿨는가?"와 같은 시간의 흐름이 중요한 비즈니스 데이터가 될 수 있어서 Audit 기능이 있는 BaseEntity를 상속
+public class CartItem extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

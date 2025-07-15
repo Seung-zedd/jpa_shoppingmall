@@ -22,4 +22,4 @@ spring:
     hibernate:
       # ddl-auto와 같이 각 환경에 따라 달라져야 하는 설정은 공통 파일(application-common.yml)에서 관리하지 않는 것이 좋습니다.
       naming:
-        physical-strategy: com.mysite.jpa_shoppingmall.configuration.CamelCaseToSnakeAndUpperCaseStrategy
+        physical-strategy: com.mysite.jpa_shoppingmall.config.CamelCaseToSnakeAndUpperCaseStrategy
