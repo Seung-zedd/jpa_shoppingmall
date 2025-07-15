@@ -53,8 +53,9 @@ class CartTest {
         Member member = createMember();
         memberRepository.save(member);
 
-        Cart cart = new Cart();
-        cart.setMember(member);
+        Cart cart = Cart.builder()
+                .member(member)
+                .build();
         cartRepository.save(cart);
 
         em.flush(); // 강제로 DB 반영

@@ -5,6 +5,7 @@ import com.mysite.jpa_shoppingmall.item.entity.Item;
 import com.mysite.jpa_shoppingmall.item.repository.ItemRepository;
 import com.mysite.jpa_shoppingmall.member.entity.Member;
 import com.mysite.jpa_shoppingmall.member.repository.MemberRepository;
+import com.mysite.jpa_shoppingmall.order.repository.OrderItemRepository;
 import com.mysite.jpa_shoppingmall.order.repository.OrderRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,6 +34,8 @@ class OrderTest {
     ItemRepository itemRepository;
     @Autowired
     MemberRepository memberRepository;
+    @Autowired
+    OrderItemRepository orderItemRepository;
 
     @PersistenceContext
     EntityManager em;
@@ -111,6 +114,25 @@ class OrderTest {
         // when
         order.getOrderItems().removeFirst();
         em.flush(); // CascadeType.REMOVE도 포함되기 때문에 DELETE from orderItem 쿼리문도 나감
+
+        // then
+
+    }
+
+    @Test
+    @DisplayName("지연 로딩 테스트")
+    void lazyLoadingTest() {
+        // given
+        Order order = createOrder();
+        Long orderItemId = order.getOrderItems().getFirst().getId();
+        em.flush();
+        em.clear();
+
+        // when
+        OrderItem orderItem = orderItemRepository.findById(orderItemId).orElseThrow(EntityNotFoundException::new);
+        log.info("Order class: {}", orderItem.getOrder().getClass());
+        log.info("Order Date: {}", orderItem.getOrder().getOrderDate());
+
 
         // then
 
