@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -49,6 +50,10 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                 )
+                .exceptionHandling(e -> e
+                        // ✅ 필드 주입 대신, 아래에 있는 Bean 메서드를 직접 호출!
+                        .authenticationEntryPoint(customAuthenticationEntryPoint())
+                )
                 // 4. 💡 CSRF 설정을 명시적으로 활성화하여 타이밍 문제를 해결
                 .csrf(withDefaults());
 
@@ -65,5 +70,8 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-
+    @Bean
+    public AuthenticationEntryPoint customAuthenticationEntryPoint() {
+        return new CustomAuthenticationEntryPoint();
+    }
 }

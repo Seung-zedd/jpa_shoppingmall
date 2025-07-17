@@ -23,12 +23,12 @@ public class Item extends BaseEntity {
     @Column(nullable = false)
     private int price; // 가격
 
-    @Column(nullable = false)
-    private int stockNumber; // 재고수량
-
     @Lob
     @Column(nullable = false)
     private String itemDetail; // 상품 상세 설명
+
+    @Column(nullable = false)
+    private int stockNumber; // 재고수량
 
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus; // 상품 판매 상태

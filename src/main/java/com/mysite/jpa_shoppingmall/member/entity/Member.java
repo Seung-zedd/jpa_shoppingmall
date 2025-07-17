@@ -27,5 +27,6 @@ public class Member extends BaseEntity {
     private String address;
 
     @Enumerated(EnumType.STRING)
+    @Setter
     private Role role;
 }
