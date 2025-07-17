@@ -1,5 +1,6 @@
 package com.mysite.jpa_shoppingmall.member.service;
 
+import com.mysite.jpa_shoppingmall.member.constant.Role;
 import com.mysite.jpa_shoppingmall.member.entity.Member;
 import com.mysite.jpa_shoppingmall.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,7 @@ public class MemberService implements UserDetailsService {
 
     public Member saveMember(Member member) {
         validateDuplicateMember(member);
+        setAdminRoleIfAdminUser(member);
         return memberRepository.save(member);
     }
 
@@ -44,5 +46,9 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-
+    private void setAdminRoleIfAdminUser(Member member) {
+        if (member.getName().equals("admin")) {
+            member.setRole(Role.ADMIN);
+        }
+    }
 }

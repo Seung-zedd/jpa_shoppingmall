@@ -27,5 +27,5 @@ public interface MemberMapper {
             @Mapping(target = "role", constant = "USER")
     })
     // 💡 PasswordEncoder를 파라미터로 받아와 expression에서 사용할 수 있습니다.
-    Member toMemberEntity(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder);
+    Member to(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder);
 }

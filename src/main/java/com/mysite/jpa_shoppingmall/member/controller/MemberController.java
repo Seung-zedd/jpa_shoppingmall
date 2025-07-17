@@ -45,7 +45,7 @@ public class MemberController {
         // 서비스 로직 실행
         try {
             //* 컨트롤러 계층의 흐름 제어 + 객체 생성 책임 -> 흐름 제어
-            Member member = memberMapper.toMemberEntity(memberFormDto, passwordEncoder);
+            Member member = memberMapper.to(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
             log.info("after creating member: {}", member.toString());
         } catch (IllegalStateException e) {

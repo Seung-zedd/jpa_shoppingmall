@@ -43,7 +43,7 @@ class CartTest {
         memberFormDto.setEmail("tester@gmail.com");
         memberFormDto.setAddress("서울시 마포구 합정동");
         memberFormDto.setPassword1("2345");
-        return memberMapper.toMemberEntity(memberFormDto, passwordEncoder);
+        return memberMapper.to(memberFormDto, passwordEncoder);
     }
 
     @Test
