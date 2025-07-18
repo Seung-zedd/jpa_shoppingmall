@@ -1,7 +1,7 @@
 spring:
   config:
     activate:
-      on-profile: profile2
+      on-profile: prod
 
   # 데이터베이스 설정
   datasource:

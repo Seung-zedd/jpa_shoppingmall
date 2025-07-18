@@ -18,7 +18,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -47,8 +46,6 @@ class OrderTest {
                 .itemDetail("상세설명")
                 .itemSellStatus(ItemSellStatus.SELL)
                 .stockNumber(100)
-                .regTime(LocalDateTime.now())
-                .updateTime(LocalDateTime.now())
                 .build();
     }
 

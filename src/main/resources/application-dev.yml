@@ -2,7 +2,7 @@
 spring:
   config:
     activate:
-      on-profile: profile1
+      on-profile: dev
 
   # 데이터베이스 설정
   datasource:
@@ -25,4 +25,4 @@ item:
 
 # 개발 환경인 Windows의 일반적인 업로드 경로
 upload:
-  path: C:/shop/item
+  path: file:///C:/shop/

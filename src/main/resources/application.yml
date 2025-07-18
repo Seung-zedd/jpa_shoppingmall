@@ -1,8 +1,5 @@
 spring:
-  jpa:
-    hibernate:
-#      ddl-auto: create
   profiles:
     group:
-      dev: profile1, common
-      prod: profile2, common
+      dev: dev, common
+      prod: prod, common
