@@ -2,19 +2,27 @@ spring:
   config:
     activate:
       on-profile: profile2
+
+  # 데이터베이스 설정
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # ✅ 'Asia/Seoul'을 '+09:00'으로 변경
-    url: jdbc:mysql://localhost:3306/shop?serverTimezone=%2B09:00
-    username: ${MYSQL_USERNAME}
-    password: ${MYSQL_PASSWORD}
+    url: jdbc:mysql://real-db-server.com:3306/shop?serverTimezone=%2B09:00 # mySQL 서버는 프로퍼티 설정으로 암호화할 것(인스턴스 탈취 방지)
+
+  # JPA
   jpa:
     hibernate:
-      ddl-auto: create # 실제 배포할 때 none으로 설정됬는지 반드시 확인할 것!
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: none # 실제 배포할 때 none으로 설정됬는지 반드시 확인할 것!
   # 운영 환경에서는 캐싱 기능을 켜둔다.
   thymeleaf:
     cache: true
+
+# 파일 저장 경로
+item:
+  imgLocation: # S3 bucket의 경로를 설정하면 된다.
+
+# 리소스 업로드 경로
+upload:
+  # Linux 서버의 일반적인 업로드 경로 (예시)
+  path: /var/www/shop/images
 

@@ -11,5 +11,6 @@ public interface ItemMapper {
 
     @Mapping(target = "id", ignore = true)
     Item to(ItemFormDto itemFormDto);
+
     ItemFormDto from(Item item);
 }

@@ -3,23 +3,26 @@ spring:
   config:
     activate:
       on-profile: profile1
-  # H2 설정
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+
+  # 데이터베이스 설정
+  datasource:
+    url: jdbc:mysql://localhost:3306/shop_dev?serverTimezone=%2B09:00
+    username: ${DEV_MYSQL_USERNAME}
+    password: ${DEV_MYSQL_PASSWORD}
+
   # 개발 환경에서는 캐싱 기능을 꺼둔다.
   thymeleaf:
     cache: false
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/shop
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+
   # JPA
   jpa:
     hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: create
+
+# 파일 저장 경로(로컬 서버 내부용)
+item:
+  imgLocation: C:/shop/item
+
+# 개발 환경인 Windows의 일반적인 업로드 경로
+upload:
+  path: C:/shop/item
